@@ -1,0 +1,10 @@
+contact_links:
+    - name: 💅  Feature Request or Proposal
+      about: To submit a feature request or a proposal, follow the RFC process and send a pull request. Do NOT create issues for proposals.
+      url: https://github.com/pluralsight/tva-rfcs#what-the-process-is
+    - name: 📃  Documentation Issue
+      url: https://github.com/pluralsight/tva/issues/new?assignees=&labels=documentation%2Cneeds+triage&template=documentation.yml&title=%5BDocs%3F%5D%3A+
+      about: This issue tracker is not for documentation issues. Please file documentation issues here.
+    - name: 🤔  Questions and Help
+      url: https://design.pluralsight.com/docs/development/getting-started/support
+      about: This issue tracker is not for support questions. Please refer to the TVA community's help and discussion forums.
