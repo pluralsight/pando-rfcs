@@ -13,10 +13,7 @@ Reduce maintenance efforts and improve efficiency across UI teams.
 ## Tools
 
 - [SVGO](https://www.npmjs.com/package/svgo)
-- Node.js
-- **TBD** *Bundler/transpiler*
-
-(note on tree-shaking)
+- [svg-to-jsx](https://www.npmjs.com/package/svg-to-jsx)
 
 # Basic example
 
@@ -58,6 +55,8 @@ Naming and organization should be consistent with, and communicate the design in
 Accessibility attributes should be provided with fitting content such that it supports the base scenario.  In this case, a descriptive `aria-label` is sufficient.
 
 Any additional, structured styling would be provided by the `headless-styles` package.
+
+Individual exports should be created for each icon such that they are tree shakeable.
 
 # Drawbacks
 
