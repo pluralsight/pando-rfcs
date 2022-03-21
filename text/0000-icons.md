@@ -4,11 +4,19 @@
 
 # Summary
 
-Bundle icons as inline SVG into a simple, organized structure, ready for import and use in an application.
+## Purpose
 
-Icons are formatted and optimized by automated build scripts.
+Provide Pluralsight icons for easy use in JavaScript applications.
+Maintain consistent iconography across applications.
+Reduce maintenance efforts and improve efficiency across UI teams.
 
-By default, the icon's color is inherited from the `color` property of the parent element.
+## Tools
+
+- [SVGO](https://www.npmjs.com/package/svgo)
+- Node.js
+- **TBD** *Bundler/transpiler*
+
+(note on tree-shaking)
 
 # Basic example
 
@@ -17,19 +25,25 @@ By default, the icon's color is inherited from the `color` property of the paren
 Import SVG as JSX element (default) from the library and use in your application.
 
 ```jsx
-import { bookmark } from '@pluralsight/icons'
+import { bookmarkIcon } from '@pluralsight/icons'
+import { getIconProps } from '@pluralsight/headless-styles'
 
-const BookmarkIcon = () => <span style={{
-  display: "inline-block",
-  width: "14px",
-  height: "14px",
-  color: "#F00"
-}}>{bookmark}</span>
+const BookmarkIcon = () => <span {...getIconProps()}>{bookmarkIcon}</span>
 ```
 
 # Motivation
 
+## Why are we doing this?
+
 To provide a single library for all of our icons in a simple, flexible format that is also accessible and performant.
+
+## What use cases does it support?
+
+When a Pluralsight icon needs to be added to a UI built with JavaScript.
+
+## What is the expected outcome?
+
+A variable containing an inline SVG element that can be placed directly into your markup.
 
 # Detailed design
 
