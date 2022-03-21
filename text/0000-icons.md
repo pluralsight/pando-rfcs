@@ -48,9 +48,7 @@ SVG icons provided by designers are programmatically optimized and the syntax is
 
 To allow for flexible control over color, `currentColor` is assigned to the fill and/or stroke colors as appropriate (assuming single-color icons. All others can be exempted from this step).
 
-Icon files are then converted to a more framework-specific syntax (jsx by default) mirroring the source directory structure with one additional folder to specify the framework (e.g., `/category/name` for React jsx, `/svelte/category/name` for Svelte, etc.).
-
-Naming and organization should be consistent with, and communicate the design intent of the icons in order to guide proper usage.
+Icon files are then converted to a more framework-specific syntax (jsx by default) with one additional folder to specify the framework (e.g., `@pluralsight/icons` for React jsx - since it is the default, `@pluralsight/icons/svelte` for Svelte, etc.).
 
 Accessibility attributes should be provided with fitting content such that it supports the base scenario.  In this case, a descriptive `aria-label` is sufficient.
 
