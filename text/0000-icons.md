@@ -32,6 +32,17 @@ import { getIconProps } from '@pluralsight/headless-styles'
 const BookmarkIcon = () => <span {...getIconProps()}>{bookmarkIcon}</span>
 ```
 
+## Direct to SVG file (React App built with CRA)
+
+Note that this requires appropriate application build tooling in order to properly handle the import.
+
+```jsx
+import { ReactComponent as BookmarkIcon } from '@pluralsight/icons/svg/bookmark.svg'
+import { getIconProps } from '@pluralsight/headless-styles'
+
+const MyBookmarkComponent = (props) => <span {...getIconProps()}><BookmarkIcon/></span>
+```
+
 # Motivation
 
 >**Why are we doing this? What use cases does it support? What is the expected outcome?**
@@ -64,7 +75,9 @@ Accessibility attributes will be provided with fitting content such that it supp
 
 Any additional, structured styling would be provided by the `headless-styles` package.
 
-Individual exports should be created for each icon such that they are tree shakeable.
+Individual exports with no side effects should be created for each icon such that they are tree shakeable.
+
+The optimized SVG icons will be made available using the `files` attribute of package.json to allow usage by any consumer we don't directly support.
 
 # Drawbacks
 
