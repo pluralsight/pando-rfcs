@@ -4,6 +4,8 @@
 
 # Summary
 
+>**Brief explanation of the feature.**
+
 ## Purpose
 
 Provide Pluralsight icons for easy use in JavaScript applications.
@@ -17,6 +19,8 @@ Reduce maintenance efforts and improve efficiency across UI teams.
 
 # Basic example
 
+>**If the proposal involves a new or changed API, include a basic code example. Omit this section if it's not applicable.**
+
 ## React (JSX)
 
 Import SVG as JSX element (default) from the library and use in your application.
@@ -29,6 +33,10 @@ const BookmarkIcon = () => <span {...getIconProps()}>{bookmarkIcon}</span>
 ```
 
 # Motivation
+
+>**Why are we doing this? What use cases does it support? What is the expected outcome?**
+>
+>**Please focus on explaining the motivation so that if this RFC is not accepted, the motivation could be used to develop alternative solutions. In other words, enumerate the constraints you are trying to solve without coupling them too closely to the solution you have in mind.**
 
 ## Why are we doing this?
 
@@ -44,19 +52,31 @@ A variable containing an inline SVG element that can be placed directly into you
 
 # Detailed design
 
+>**This is the bulk of the RFC. Explain the design in enough detail for somebody familiar with a TVA library to understand, and for somebody familiar with the implementation to implement. This should get into specifics and corner-cases, and include examples of how the feature is used. Any new terminology should be defined here.**
+
 SVG icons provided by designers are programmatically optimized and the syntax is modified based on the use case (such as removing `xmlns` attributes for inline).
 
 To allow for flexible control over color, `currentColor` is assigned to the fill and/or stroke colors as appropriate (assuming single-color icons. All others can be exempted from this step).
 
 Icon files are then converted to a more framework-specific syntax (jsx by default) with one additional folder to specify the framework (e.g., `@pluralsight/icons` for React jsx - since it is the default, `@pluralsight/icons/svelte` for Svelte, etc.).
 
-Accessibility attributes should be provided with fitting content such that it supports the base scenario.  In this case, a descriptive `aria-label` is sufficient.
+Accessibility attributes will be provided with fitting content such that it supports the default scenario.  In this case, a descriptive `aria-label` is sufficient.
 
 Any additional, structured styling would be provided by the `headless-styles` package.
 
 Individual exports should be created for each icon such that they are tree shakeable.
 
 # Drawbacks
+
+>**Why should we *not* do this? Please consider:**
+>
+>- **implementation cost, both in term of code size and complexity**
+>- **whether the proposed feature can be implemented in user space**
+>- **the impact on teaching people a TVA library**
+>- **integration of this feature with other existing and planned features**
+>- **cost of migrating existing TVA applications (is it a breaking change?)**
+>
+>**There are tradeoffs to choosing any path. Attempt to identify them here.**
 
 Implementing for each framework means supporting multiple formats, increasing up-front and maintenance effort for each additional framework and potentially less flexibility/visibility from the client side.
 
@@ -66,7 +86,7 @@ Since this library provides *just* the icon, existing libraries would need to re
 
 # Alternatives
 
-What other designs have been considered? What is the impact of not doing this?
+>**What other designs have been considered? What is the impact of not doing this?**
 
 ## Doing nothing
 
@@ -135,13 +155,21 @@ Make SVG files available using the `files` property of package.json
 
 # Adoption strategy
 
+>**If we implement this proposal, how will existing TVA developers adopt it? Is this a breaking change? Can we write a codemod? Should we coordinate with other projects or libraries?**
+
 Existing implementations would replace the icon content with that from TVA.
 
 # How we teach this
 
+>**What names and terminology work best for these concepts and why? How is this idea best presented? As a continuation of existing TVA patterns?**
+>
+>**Would the acceptance of this proposal mean the TVA documentation must be re-organized or altered? Does it change how TVA is taught to new developers at any level?**
+
 This import will replace a direct SVG import, and the contents can be assumed to be an SVG element that is directly usable by your framework.
 
 # Unresolved questions
+
+>**Optional, but suggested for first drafts. What parts of the design are still TBD?**
 
 How are we sharing icons for other platforms, such as mobile native?
 
