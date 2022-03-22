@@ -16,6 +16,7 @@
 
 - [svgo](https://www.npmjs.com/package/svgo)
 - [Babel](https://babeljs.io/)
+  - @babel/plugin-transform-react-jsx
 
 # Basic example
 
@@ -79,11 +80,23 @@ Each framework will have its own corresponding folder. E.g., , `@pluralsight/ico
 
 Any additional properties (including styling) can be provided by the `headless-styles` package.
 
-Individual exports with no side effects should be created for each icon such that they are tree shakeable.
-
-The optimized SVG icons in `dist/svg` will be made available using the `files` attribute of package.json to allow usage by any consumer we don't support.
+The optimized SVG icons in `build/svg` will be made available using the `files` attribute of package.json to allow usage by any consumer we don't support.
 
 Since the provided variable represents the icon imagery, and is used as an inline svg (or img) element, we can safely change the underlying implementation without affecting the API.
+
+## Tree shaking
+
+To support tree shaking, each icon is transpiled to its own file.
+
+The index file then individually imports all of the transpiled icons, and exports them collectively.
+
+```js
+import arrowLeft from 'build/react/arrowLeft'
+import arrowRight from 'build/react/arrowRight'
+...
+
+export { arrowLeft, arrowRight, ... }
+```
 
 ## Usage
 
