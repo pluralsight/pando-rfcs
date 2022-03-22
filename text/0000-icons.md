@@ -14,8 +14,8 @@
 
 ## Tools
 
+- [svgo](https://www.npmjs.com/package/svgo)
 - [Babel](https://babeljs.io/)
-- [babel-plugin-inline-react-svg](https://www.npmjs.com/package/babel-plugin-inline-react-svg)
 
 # Basic example
 
@@ -71,10 +71,11 @@ SVG icons provided by designers are placed in the `src/svg` folder, then program
 
 To allow for control of the color via CSS by inheriting the foreground color, `currentColor` is assigned to the `fill` and/or `stroke` colors by a build script as appropriate (this assumes single-color icons).
 
-Icon files are then converted to framework-specific syntax (React by default) using `babel` (and potentially other tools in the future) with one additional folder to specify each framework (e.g., `@pluralsight/icons` for React jsx - since it is the default, `@pluralsight/icons/svelte` for Svelte, etc.).
+Icon files are then converted to framework-specific syntax.
 
-Each icon will have, by default, a descriptive `aria-label` attribute.
-**TO DO: How to change or ignore**
+React is our default, which converts svg to `_jsx` syntax using `svg-to-jsx` and `babel`. Icons can then be imported from `@pluralsight/icons` - since it is the default.
+
+Each framework will have its own corresponding folder. E.g., , `@pluralsight/icons/svelte` for Svelte, etc.
 
 Any additional properties (including styling) can be provided by the `headless-styles` package.
 
@@ -83,6 +84,14 @@ Individual exports with no side effects should be created for each icon such tha
 The optimized SVG icons in `dist/svg` will be made available using the `files` attribute of package.json to allow usage by any consumer we don't support.
 
 Since the provided variable represents the icon imagery, and is used as an inline svg (or img) element, we can safely change the underlying implementation without affecting the API.
+
+## Usage
+
+The imported element can be assumed to contain a renderable svg (or img) element, and used the same as those elements (as seen in the earlier example)
+
+## Accessibility
+
+Each icon will have, by default, an `aria-label` attribute that describes the icon.
 
 # Drawbacks
 
