@@ -8,14 +8,14 @@
 
 ## Purpose
 
-Provide Pluralsight icons for easy use in JavaScript applications.
-Maintain consistent iconography across applications.
-Reduce maintenance efforts and improve efficiency across UI teams.
+- Provide Pluralsight icons for easy use in JavaScript applications.
+- Maintain consistent iconography across applications.
+- Reduce maintenance efforts and improve efficiency across UI teams.
 
 ## Tools
 
-- [SVGO](https://www.npmjs.com/package/svgo)
-- [svg-to-jsx](https://www.npmjs.com/package/svg-to-jsx)
+- [Babel](https://babeljs.io/)
+- [babel-plugin-inline-react-svg](https://www.npmjs.com/package/babel-plugin-inline-react-svg)
 
 # Basic example
 
@@ -24,6 +24,8 @@ Reduce maintenance efforts and improve efficiency across UI teams.
 ## React (JSX)
 
 Import SVG as JSX element (default) from the library and use in your application.
+
+Use `headless-styles` to provide supporting properties for controlling the icon rendering.
 
 ```jsx
 import { bookmarkIcon } from '@pluralsight/icons'
@@ -34,7 +36,7 @@ const BookmarkIcon = () => <span {...getIconProps()}>{bookmarkIcon}</span>
 
 ## Direct to SVG file (React App built with CRA)
 
-Note that this requires appropriate application build tooling in order to properly handle the import.
+Note that this requires appropriate application build tooling in order to properly handle the import, which CRA includes by default.
 
 ```jsx
 import { ReactComponent as BookmarkIcon } from '@pluralsight/icons/svg/bookmark.svg'
@@ -51,7 +53,7 @@ const MyBookmarkComponent = (props) => <span {...getIconProps()}><BookmarkIcon/>
 
 ## Why are we doing this?
 
-To provide a single library for all of our icons in a simple, flexible format that is also accessible and performant.
+To provide a single library for all of our icons in a simple, flexible format that is accessible and adds minimal overhead.
 
 ## What use cases does it support?
 
@@ -65,19 +67,22 @@ A variable containing an inline SVG element that can be placed directly into you
 
 >**This is the bulk of the RFC. Explain the design in enough detail for somebody familiar with a TVA library to understand, and for somebody familiar with the implementation to implement. This should get into specifics and corner-cases, and include examples of how the feature is used. Any new terminology should be defined here.**
 
-SVG icons provided by designers are programmatically optimized and the syntax is modified based on the use case (such as removing `xmlns` attributes for inline).
+SVG icons provided by designers are placed in the `src/svg` folder, then programmatically optimized using `svgo` and saved to `build/svg`.
 
-To allow for flexible control over color, `currentColor` is assigned to the fill and/or stroke colors as appropriate (assuming single-color icons. All others can be exempted from this step).
+To allow for control of the color via CSS by inheriting the foreground color, `currentColor` is assigned to the `fill` and/or `stroke` colors by a build script as appropriate (this assumes single-color icons).
 
-Icon files are then converted to a more framework-specific syntax (jsx by default) with one additional folder to specify the framework (e.g., `@pluralsight/icons` for React jsx - since it is the default, `@pluralsight/icons/svelte` for Svelte, etc.).
+Icon files are then converted to framework-specific syntax (React by default) using `babel` (and potentially other tools in the future) with one additional folder to specify each framework (e.g., `@pluralsight/icons` for React jsx - since it is the default, `@pluralsight/icons/svelte` for Svelte, etc.).
 
-Accessibility attributes will be provided with fitting content such that it supports the default scenario.  In this case, a descriptive `aria-label` is sufficient.
+Each icon will have, by default, a descriptive `aria-label` attribute.
+**TO DO: How to change or ignore**
 
-Any additional, structured styling would be provided by the `headless-styles` package.
+Any additional properties (including styling) can be provided by the `headless-styles` package.
 
 Individual exports with no side effects should be created for each icon such that they are tree shakeable.
 
-The optimized SVG icons will be made available using the `files` attribute of package.json to allow usage by any consumer we don't directly support.
+The optimized SVG icons in `dist/svg` will be made available using the `files` attribute of package.json to allow usage by any consumer we don't support.
+
+Since the provided variable represents the icon imagery, and is used as an inline svg (or img) element, we can safely change the underlying implementation without affecting the API.
 
 # Drawbacks
 
@@ -95,7 +100,7 @@ Implementing for each framework means supporting multiple formats, increasing up
 
 This can be partially mitigated by exposing the source SVGs and making them available for import directly.  That way, even if a framework is not yet supported, they can still use the icons.
 
-Since this library provides *just* the icon, existing libraries would need to retrofit to replace the SVG portion of their icon components.
+Since this library provides *just* the icon, existing libraries would only need to replace the SVG portion of their icon components.
 
 # Alternatives
 
@@ -162,9 +167,9 @@ Make SVG files available using the `files` property of package.json
 - using data-url (no need to base64 encode)
 - No real benefits vs inline
 - More limited than inline
-- May [render fastest](https://cloudfour.com/thinks/svg-icon-stress-test/)
 - Cannot specify color with CSS
   - Can change SVG props via JS in the markup, but that creates theming and maintenance issues
+- May [render fastest](https://cloudfour.com/thinks/svg-icon-stress-test/)
 
 # Adoption strategy
 
@@ -235,6 +240,8 @@ For example, here is an icon implementation from the Classic design system befor
 
 This import will replace a direct SVG import, and the contents can be assumed to be an SVG element that is directly usable by your framework.
 
+When a developer needs an icon asset for their framework, they would only need to know to come to this package, and what it provides.
+
 # Unresolved questions
 
 >**Optional, but suggested for first drafts. What parts of the design are still TBD?**
@@ -242,3 +249,5 @@ This import will replace a direct SVG import, and the contents can be assumed to
 How are we sharing icons for other platforms, such as mobile native?
 
 How do we make the icons availables for designers to use?
+
+What is our process for adding new framework/format support?
