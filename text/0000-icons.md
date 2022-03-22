@@ -74,13 +74,13 @@ To allow for control of the color via CSS by inheriting the foreground color, `c
 
 Icon files are then converted to framework-specific syntax.
 
-React is our default, which converts svg to `_jsx` syntax using `svg-to-jsx` and `babel`. Icons can then be imported from `@pluralsight/icons` - since it is the default.
+React is our default, which converts svg to `_jsx` syntax using `svg-to-jsx` and `babel`. React icons can then be imported from `@pluralsight/icons` - since it is the default.
 
 Each framework will have its own corresponding folder. E.g., , `@pluralsight/icons/svelte` for Svelte, etc.
 
 Any additional properties (including styling) can be provided by the `headless-styles` package.
 
-The optimized SVG icons in `build/svg` will be made available using the `files` attribute of package.json to allow usage by any consumer we don't support.
+The optimized SVG icons in `build/svg` will also be made available using the `files` attribute of package.json to allow usage by any consumer we don't support.
 
 Since the provided variable represents the icon imagery, and is used as an inline svg (or img) element, we can safely change the underlying implementation without affecting the API.
 
@@ -119,10 +119,6 @@ Each icon will have, by default, an `aria-label` attribute that describes the ic
 >**There are tradeoffs to choosing any path. Attempt to identify them here.**
 
 Implementing for each framework means supporting multiple formats, increasing up-front and maintenance effort for each additional framework and potentially less flexibility/visibility from the client side.
-
-This can be partially mitigated by exposing the source SVGs and making them available for import directly.  That way, even if a framework is not yet supported, they can still use the icons.
-
-Since this library provides *just* the icon, existing libraries would only need to replace the SVG portion of their icon components.
 
 # Alternatives
 
@@ -199,6 +195,8 @@ Make SVG files available using the `files` property of package.json
 
 Existing implementations would replace the icon content with that from TVA.
 
+Since this library provides *just* the icon, existing libraries would only need to replace the SVG portion of their icon components.
+
 For example, here is an icon implementation from the Classic design system before using the new icons package.
 
 ```tsx
@@ -273,3 +271,5 @@ How are we sharing icons for other platforms, such as mobile native?
 How do we make the icons availables for designers to use?
 
 What is our process for adding new framework/format support?
+
+Should we provide an iterable way to communicate all available options (that doesn't interfere with treeshaking)?  Something that would be useful in automating the build of a demo page and/or providing hints via IDEs.
