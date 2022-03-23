@@ -264,8 +264,4 @@ When a developer needs an icon asset for their framework, they would only need t
 
 How are we sharing icons for other platforms, such as mobile native?
 
-How do we make the icons availables for designers to use?
-
-What is our process for adding new framework/format support?
-
-Should we provide an iterable way to communicate all available options (that doesn't interfere with treeshaking)?  Something that would be useful in automating the build of a demo page and/or providing hints via IDEs.
+How do we make the icons availables for designers to use? And conversely, what is our process for receiving icons from designers?  (Second question to be solved separately from this package, possibly the first as well).
