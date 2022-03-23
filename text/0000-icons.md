@@ -35,17 +35,6 @@ import { getIconProps } from '@pluralsight/headless-styles'
 const BookmarkIcon = () => <span {...getIconProps()}>{bookmarkIcon}</span>
 ```
 
-## Direct to SVG file (React App built with CRA)
-
-Note that this requires appropriate application build tooling in order to properly handle the import, which CRA includes by default.
-
-```jsx
-import { ReactComponent as BookmarkIcon } from '@pluralsight/icons/svg/bookmark.svg'
-import { getIconProps } from '@pluralsight/headless-styles'
-
-const MyBookmarkComponent = (props) => <span {...getIconProps()}><BookmarkIcon/></span>
-```
-
 # Motivation
 
 >**Why are we doing this? What use cases does it support? What is the expected outcome?**
@@ -191,6 +180,8 @@ Make SVG files available using the `files` property of package.json
 
 Existing implementations would replace the icon content with that from TVA.
 
+We will begin by releasing the SVG files, followed by React, Svelte, Vue, and Angular elements.
+
 Since this library provides *just* the icon, existing libraries would only need to replace the SVG portion of their icon components.
 
 For example, here is an icon implementation from the Classic design system before using the new icons package.
@@ -247,6 +238,22 @@ For example, here is an icon implementation from the Classic design system befor
 
   export { BriefcaseIcon }
 ```
+
+Here is an example of using SVG files directly in a React app built with CRA
+
+**This approach is meant to be used for unsupported frameworks**
+
+Note that this requires appropriate application build tooling in order to properly handle the import, which CRA includes by default.
+
+```jsx
+import { ReactComponent as BookmarkIcon } from '@pluralsight/icons/svg/bookmark.svg'
+import { getIconProps } from '@pluralsight/headless-styles'
+
+// Props are applied to the parent rather than directly to the component
+// in order to maintain consistent structural assumptions.
+const MyBookmarkComponent = (props) => <span {...getIconProps()}><BookmarkIcon/></span>
+```
+
 
 # How we teach this
 
