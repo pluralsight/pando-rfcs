@@ -116,8 +116,6 @@ Each icon will have, by default, an `aria-label` attribute that describes the ic
 >
 >**There are tradeoffs to choosing any path. Attempt to identify them here.**
 
-Implementing for each framework means supporting multiple formats, increasing up-front and maintenance effort for each additional framework and potentially less flexibility/visibility from the client side.
-
 # Alternatives
 
 >**What other designs have been considered? What is the impact of not doing this?**
