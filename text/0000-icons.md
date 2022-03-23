@@ -91,11 +91,9 @@ To support tree shaking, each icon is transpiled to its own file.
 The index file then individually imports all of the transpiled icons, and exports them collectively.
 
 ```js
-import arrowLeft from 'build/react/arrowLeft'
-import arrowRight from 'build/react/arrowRight'
+export { arrowLeft } from 'build/react/arrowLeft'
+export { arrowRight } from 'build/react/arrowRight'
 ...
-
-export { arrowLeft, arrowRight, ... }
 ```
 
 ## Usage
