@@ -17,6 +17,7 @@
 - [svgo](https://www.npmjs.com/package/svgo)
 - [Babel](https://babeljs.io/)
   - @babel/plugin-transform-react-jsx
+- [svg-to-jsx](https://www.npmjs.com/package/svg-to-jsx)
 
 # Basic example
 
@@ -24,15 +25,15 @@
 
 ## React (JSX)
 
-Import SVG as JSX element (default) from the library and use in your application.
+Import SVG as React component (default) from the library and use in your application.
 
 Use `headless-styles` to provide supporting properties for controlling the icon rendering.
 
 ```jsx
-import { bookmarkIcon } from '@pluralsight/icons'
+import { BookmarkIcon } from '@pluralsight/icons'
 import { getIconProps } from '@pluralsight/headless-styles'
 
-const BookmarkIcon = () => <span {...getIconProps()}>{bookmarkIcon}</span>
+const MyBookmarkIcon = () => <BookmarkIcon {...getIconProps()} />
 ```
 
 # Motivation
@@ -51,27 +52,30 @@ When a Pluralsight icon needs to be added to a UI built with JavaScript.
 
 ## What is the expected outcome?
 
-A variable containing an inline SVG element that can be placed directly into your markup.
+A component containing only an inline SVG element that can be placed directly into your app.
 
 # Detailed design
 
 >**This is the bulk of the RFC. Explain the design in enough detail for somebody familiar with a TVA library to understand, and for somebody familiar with the implementation to implement. This should get into specifics and corner-cases, and include examples of how the feature is used. Any new terminology should be defined here.**
 
-SVG icons provided by designers are placed in the `src/svg` folder, then programmatically optimized using `svgo` and saved to `build/svg`.
+SVG icons provided by designers are placed in the `src/svg` folder.
 
-To allow for control of the color via CSS by inheriting the foreground color, `currentColor` is assigned to the `fill` and/or `stroke` colors by a build script as appropriate (this assumes single-color icons).
+Using `svgo`, the icons are then programmatically optimized and saved to `build/svg`.
+
+To allow for control of the color via CSS by inheriting the foreground color, the `fill` attribute is set to `currentColor` (this assumes single-color icons).
+
+The build process will also ensure that our accessibility attributes are present and correct.
 
 Icon files are then converted to framework-specific syntax.
 
-React is our default, which converts svg to `_jsx` syntax using `svg-to-jsx` and `babel`. React icons can then be imported from `@pluralsight/icons` - since it is the default.
+For React (our default), we convert svg to `_jsx` syntax using `svg-to-jsx` and `babel`.
+These elements are then used to create React components, which can then be imported from `@pluralsight/icons` - since it is the default.
 
 Each framework will have its own corresponding folder. E.g., , `@pluralsight/icons/svelte` for Svelte, etc.
 
 Any additional properties (including styling) can be provided by the `headless-styles` package.
 
 The optimized SVG icons in `build/svg` will also be made available using the `files` attribute of package.json to allow usage by any consumer we don't support.
-
-Since the provided variable represents the icon imagery, and is used as an inline svg (or img) element, we can safely change the underlying implementation without affecting the API.
 
 ## Tree shaking
 
@@ -80,18 +84,18 @@ To support tree shaking, each icon is transpiled to its own file.
 The index file then individually imports all of the transpiled icons, and exports them collectively.
 
 ```js
-export { arrowLeft } from 'build/react/arrowLeft'
-export { arrowRight } from 'build/react/arrowRight'
+export { ArrowLeft } from 'build/react/ArrowLeft'
+export { ArrowRight } from 'build/react/ArrowRight'
 ...
 ```
 
 ## Usage
 
-The imported element can be assumed to contain a renderable svg (or img) element, and used the same as those elements (as seen in the earlier example)
+The imported component can be assumed to contain a renderable svg element, and used the same as those elements (as seen in the earlier example)
 
 ## Accessibility
 
-Each icon will have, by default, an `aria-label` attribute that describes the icon.
+Each icon will have, by default, an `aria-label` attribute that describes the icon, as well as `role="img"`.
 
 # Drawbacks
 
@@ -178,7 +182,7 @@ Make SVG files available using the `files` property of package.json
 
 >**If we implement this proposal, how will existing TVA developers adopt it? Is this a breaking change? Can we write a codemod? Should we coordinate with other projects or libraries?**
 
-Existing implementations would replace the icon content with that from TVA.
+Existing implementations would start by replacing icon components with the equivalent from TVA.
 
 We will begin by releasing the SVG files, followed by React, Svelte, Vue, and Angular elements.
 
@@ -219,16 +223,14 @@ For example, here is an icon implementation from the Classic design system befor
 
   import React, { forwardRef } from 'react'
   import Icon, { IconComponent } from '..'
-  import { briefcaseIcon } from '@pluralsight/icons'
+  import { BriefcaseIcon as BriefcaseIconTVA } from '@pluralsight/icons'
 
 
   const BriefcaseIcon = forwardRef((props, ref) => {
     const { 'aria-label': ariaLabel, ...rest } = props
 
     return (
-      <Icon {...rest} ref={ref}>
-        {briefcaseIcon}
-      </Icon>
+      <BriefcaseIconTVA {...iconProps} {...leftovers} ref={ref} />
     )
   }) as IconComponent
 
@@ -251,9 +253,8 @@ import { getIconProps } from '@pluralsight/headless-styles'
 
 // Props are applied to the parent rather than directly to the component
 // in order to maintain consistent structural assumptions.
-const MyBookmarkComponent = (props) => <span {...getIconProps()}><BookmarkIcon/></span>
+const MyBookmarkComponent = (props) => <BookmarkIcon {...getIconProps()} />
 ```
-
 
 # How we teach this
 
@@ -261,9 +262,11 @@ const MyBookmarkComponent = (props) => <span {...getIconProps()}><BookmarkIcon/>
 >
 >**Would the acceptance of this proposal mean the TVA documentation must be re-organized or altered? Does it change how TVA is taught to new developers at any level?**
 
-This import will replace a direct SVG import, and the contents can be assumed to be an SVG element that is directly usable by your framework.
+The icon component is essentially an inline SVG, wrapped in a component matching their framework, *or* it is an SVG element that they are importing and manipulating on their own.
 
-When a developer needs an icon asset for their framework, they would only need to know to come to this package, and what it provides.
+Documentation to show what is available will be important.
+
+Since we will use the `headless-styles` package for applying styling to the icons, making sure we stay consistent will help to reduce the learning curve.
 
 # Unresolved questions
 
