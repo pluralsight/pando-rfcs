@@ -1,21 +1,21 @@
-# TVA RFCs
+# Pando RFCs
 
 Many changes, including bug fixes and documentation improvements can be
 implemented and reviewed via the normal GitHub pull request workflow.
 
 Some changes though are "substantial", and we ask that these be put
-through a bit of a design process and produce a consensus among the TVA
+through a bit of a design process and produce a consensus among the Pando
 core team.
 
 The "RFC" (request for comments) process is intended to provide a
 consistent and controlled path for new features to enter the project.
 
-[Active RFC List](https://github.com/pluralsight/tva-rfcs/pulls)
+[Active RFC List](https://github.com/pluralsight/pando-rfcs/pulls)
 
 ## When to follow this process
 
 You should consider using this process if you intend to make "substantial"
-changes to any TVA library or its documentation. Some examples that would benefit
+changes to any Pando library or its documentation. Some examples that would benefit
 from an RFC are:
 
   - A new feature that creates new API surface area, and would
@@ -23,7 +23,7 @@ from an RFC are:
   - The removal of features that already shipped as part of the release
      channel.
   - The introduction of new idiomatic usage or conventions, even if they
-     do not include code changes to TVA libraries itself.
+     do not include code changes to Pando libraries itself.
 
 Some changes do not require an RFC:
 
@@ -31,55 +31,55 @@ Some changes do not require an RFC:
   - Addition or removal of warnings
   - Additions that strictly improve objective, numerical quality
   criteria (speedup, better browser support)
-  - Additions only likely to be _noticed by_ other implementors-of-TVA,
-  invisible to users-of-TVA.
+  - Additions only likely to be _noticed by_ other implementors-of-pando,
+  invisible to users-of-pando.
 
 ## What to expect
 
 It is hard to write an RFC that would get accepted. Nevertheless, this shouldn't
 discourage you from writing one.
 
-TVA has a very limited API surface area, and each feature needs to work seamlessly with all other features.
-Even among the team members who work on TVA full time every day, ramping up
+Pando has a very limited API surface area, and each feature needs to work seamlessly with all other features.
+Even among the team members who work on Pando full time every day, ramping up
 and gaining enough context to write a good RFC takes more than a year.
 
-In practice, TVA RFCs serve two purposes:
+In practice, Pando RFCs serve two purposes:
 
-* **TVA Team RFCs** are submitted by [TVA Team members](https://design.pluralsight.com/team) after extensive (sometimes,
+* **Pando Team RFCs** are submitted by [Pando Team members](https://design.pluralsight.com/team) after extensive (sometimes,
 multi-month or multi-year) design, discussion, and experimentation. In practice, they comprise the
 majority of the RFCs that got merged so far. The purpose of these RFCs is to preview the design
 for the community and to provide an opportunity for feedback. We read every comment on the RFCs
 we publish, respond to questions, and sometimes incorporate the feedback into the proposal.
-Since our time is limited, we don't tend to write an RFC for a TVA feature unless we're very
-confident that it fits the design. Although it might look like most TVA Team RFCs easily
+Since our time is limited, we don't tend to write an RFC for a Pando feature unless we're very
+confident that it fits the design. Although it might look like most Pando Team RFCs easily
 get accepted, in practice it's because 98% of ideas were left on the cutting room floor. The remaining
 2% that we feel very confident and have team consensus on about are the ones that we announce as RFCs for community feedback.
 
 * **Community RFCs** can be submitted by anyone. In practice, most community RFCs do not get merged.
 The most common reasons we reject an RFC is that it has significant design gaps or flaws, does not work
-cohesively with all the other features, or does not fall into our view of the scope of a TVA library. However,
+cohesively with all the other features, or does not fall into our view of the scope of a Pando library. However,
 getting merged is not the only success criteria for an RFC. Even when the API design does not match
 the direction we'd like to take, we find RFC discussions very valuable for research and inspiration.
 We don't always review community RFCs in a timely manner, but whenever we start work on a related area, we check
 the RFCs in that area, and review the use cases and concerns that the community members have posted.
-When you send an RFC, your primary goal should not be necessarily to get it merged into TVA as is,
+When you send an RFC, your primary goal should not be necessarily to get it merged into Pando as is,
 but to generate a rich discussion with the community members. If your proposal later becomes accepted,
 that's great. But even if it doesn't, it won't be in vain. The resulting discussion often informs the next
-proposal in the same problem space, whether it comes from the community or from the TVA Team. Many library
+proposal in the same problem space, whether it comes from the community or from the Pando Team. Many library
 authors are reading the discussions, so RFCs often lead to community experimentation and userland solutions.
 
-We apply the same level of rigour both to TVA Team RFCs and Community RFCs. The primary difference
-between them is in the design phase: TVA Team RFCs tend to be submitted at the end of the design
+We apply the same level of rigour both to Pando Team RFCs and Community RFCs. The primary difference
+between them is in the design phase: Pando Team RFCs tend to be submitted at the end of the design
 process whereas the Community RFCs tend to be submitted at the beginning as a way to kickstart it.
 
 ## What the process is
 
-In short, to get a major feature added to TVA, one usually first gets
+In short, to get a major feature added to Pando, one usually first gets
 the RFC merged into the RFC repo as a markdown file. At that point the RFC
 is 'active' and may be implemented with the goal of eventual inclusion
-into TVA.
+into Pando.
 
-* Fork the RFC repo http://github.com/pluralsight/tva-rfcs
+* Fork the RFC repo http://github.com/pluralsight/pando-rfcs
 * Copy `0000-template.md` to `text/0000-my-feature.md` (where
 'my-feature' is descriptive. Don't assign an RFC number yet).
 * Fill in the RFC. Put care into the details: **RFCs that do not
@@ -93,9 +93,9 @@ to revise it in response.
 are much more likely to make progress than those that don't receive any
 comments.
 * Eventually, the team will decide whether the RFC is a candidate
-for inclusion in TVA. Note that a team review may take a long time,
+for inclusion in Pando. Note that a team review may take a long time,
 and we suggest that you ask members of the community to review it first.
-* RFCs that are candidates for inclusion in TVA will enter a "final comment
+* RFCs that are candidates for inclusion in Pando will enter a "final comment
 period" lasting 3 calendar days. The beginning of this period will be signaled with a
 comment and tag on the RFCs pull request.
 * An RFC can be modified based upon feedback from the team and community.
@@ -111,7 +111,7 @@ become 'active'.
 ## The RFC lifecycle
 
 Once an RFC becomes active, then authors may implement it and submit the
-feature as a pull request to the TVA repo. Becoming 'active' is not a rubber
+feature as a pull request to the Pando repo. Becoming 'active' is not a rubber
 stamp, and in particular still does not mean the feature will ultimately
 be merged; it does mean that the core team has agreed to it in principle
 and are amenable to merging it.
@@ -140,16 +140,16 @@ feel free to ask (e.g. by leaving a comment on the associated issue).
 
 ## Reviewing RFCs
 
-Currently, the TVA Team cannot commit to reviewing RFCs in a timely manner.
+Currently, the Pando Team cannot commit to reviewing RFCs in a timely manner.
 When you submit an RFC, your primary goal should be to solicit community feedback
-and generate a rich discussion. The TVA Team re-evaluates the current list of
+and generate a rich discussion. The Pando Team re-evaluates the current list of
 projects and priorities every several months. Even if an RFC is well-designed,
 we often can't commit to integrating it right away. However, we find it very
 valuable to revisit the open RFCs every few months, and see if anything catches
 our eye. Whenever we start working on a new problem space, we also make sure
 to check for prior work and discussion in any related RFCs, and engage with them.
 
-We read all RFCs within a few weeks of submission. If we think the design fits TVA well,
+We read all RFCs within a few weeks of submission. If we think the design fits Pando well,
 and if we're ready to evaluate it, we will try to review it sooner. If we're hesitant about
 the design or if we don't have enough information to evaluate it, we will leave it open
 until it receives enough community feedback. We recognize it is frustrating to not receive
@@ -157,7 +157,7 @@ a timely review, but you can be sure that none of the work you put into an RFC i
 
 ## Inspiration
 
-TVA's RFC process owes its inspiration to the [Yarn RFC process], [Rust RFC process], and [Ember RFC process].
+Pando's RFC process owes its inspiration to the [Yarn RFC process], [Rust RFC process], and [Ember RFC process].
 
 [Yarn RFC process]: https://github.com/yarnpkg/rfcs
 [Rust RFC process]: https://github.com/rust-lang/rfcs
