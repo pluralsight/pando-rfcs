@@ -2,7 +2,7 @@
 - RFC PR: (leave this empty)
 - Pando Issue: (leave this empty)
 
-# Prop Merge Utility
+# React-Utils: Prop Merge Utility
 
 ## Summary
 
@@ -113,6 +113,7 @@ The utility should accept 2 or more objects and merge them according to the foll
 - **`class`, `className`, `aria-labelledby`, `aria-describedby`:** Concatenate with single-space separators
 - **Event handlers (`onChange`, etc):** Wrap in function, calling in order received in argument list
 - **`style`:** Shallow merge
+- **`ref`:** TBD
 - **Other string, boolean, number:** Direct assignment. overwrite with latest value
 - **Other Objects:** Recurse through prop merge
 
