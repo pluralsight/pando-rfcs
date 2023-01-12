@@ -10,14 +10,59 @@ Merge props returned by our helpers and hooks so they can be applied to the elem
 
 ## Basic example
 
+The submenu combines multiple hooks, which have some conflicts when it comes to their returned props.  Using a utility to merge the props results in cleaner, more reliable code.
+
+### Without the utility
+
 ```jsx
 function Submenu(props) {
-  const rovingTabIndexProps = useRovingTabIndex()
-  const submenuInteractionProps = useSubmenuInteraction()
+  const { onBlur: onTriggerBlurTabIndex, ...rovingTabIndexProps } =
+    useRovingTabIndex()
+  const { expanded, menu, trigger } = useSubmenuInteraction()
+  const { onBlur: onTriggerBlurInteraction, ...triggerInteractionProps } =
+    trigger
+  const submenuStyles = getMenuProps({
+    label: props.label,
+  })
+  const listItem = getMenuItemProps()
+
+  function handleTriggerBlur(e) {
+    onTriggerBlurInteraction(e)
+    onTriggerBlurTabIndex(e)
+  }
+
+  return (
+    <li {...listItem.menuListItem}>
+      <button
+        {...listItem.menuItem}
+        {...triggerInteractionProps}
+        {...rovingTabIndexProps}
+        onBlur={handleTriggerBlur}
+      >
+        <p {...listItem.menuItemText}>{props.label}</p>
+        <ChevronRightIcon {...getIconProps(submenuStyles.iconOptions)} />
+      </button>
+
+      {expanded && (
+        <menu {...submenuStyles.menu} {...menu}>
+          {props.children}
+        </menu>
+      )}
+    </li>
+  )
+}
+```
+
+### With the utility
+
+```jsx
+function Submenu(props) {
   const submenuStyles = getMenuProps({
     label: props.label,
   })
   const menuItemStyles = getMenuItemProps()
+  const rovingTabIndexProps = useRovingTabIndex()
+  const submenuInteractionProps = useSubmenuInteraction()
 
   return (
     <li {...menuItemStyles.menuListItem}>
@@ -25,13 +70,13 @@ function Submenu(props) {
         {...mergeProps(
           menuItemStyles.menuItem,
           submenuInteractionProps.trigger,
-          triggerInteractionProps,
           rovingTabIndexProps
         )}
       >
         <p {...menuItemStyles.menuItemText}>{props.label}</p>
         <ChevronRightIcon {...getIconProps(submenuStyles.iconOptions)} />
       </button>
+
       {expanded && (
         <menu {...mergeProps(submenuStyles.menu, submenuInteractionProps.menu)}>
           {props.children}
@@ -55,6 +100,10 @@ function Submenu(props) {
 Combining small, targeted functions gives us great power and flexibility, and are cleaner and easier to maintain.  However, it also means that we may have multiple helpers returning the same properties for the same element.
 
 We want to be able to safely and consistently combine returned props so that they can be applied without requiring any additional manipulation.
+
+We want to reduce the impact of future additions.  For example, if an API adds a prop to its output that now conflicts with another, if they were merged with this utility then bugs should be avoided.
+
+We want to improve the flexibility of our helpers, allowing more composition and reuse with other libraries, not just our own.
 
 ## Detailed design
 
