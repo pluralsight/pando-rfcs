@@ -111,7 +111,7 @@ The utility should accept 2 or more objects and merge them according to the foll
 
 - Skip inherited properties; only merge 'own' properties
 - **`class`, `className`, `aria-labelledby`, `aria-describedby`:** Concatenate with single-space separators
-- **Event handlers (`onChange`, etc):** Wrap in function, calling in order received in argument list
+- **Event handlers (`onChange`, etc) and Functions:** Wrap in a new function, calling in the order received in the argument list
 - **`style`:** Shallow merge
 - **`ref`:** TBD
 - **Other string, boolean, number:** Direct assignment. overwrite with latest value
