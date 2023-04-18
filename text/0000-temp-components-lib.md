@@ -142,7 +142,7 @@ within React Server Components._
 ### Simple Components
 
 Simple components should mimick the vanilla JSX design React provides with the Headless-styles
-props extending it (i.e. not manipluataing React props or creating "component
+props extending it (i.e. not manipulating React props or creating "component
 does all" solutions).
 
 For example, a Button should be built something like this:
