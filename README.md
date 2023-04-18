@@ -45,7 +45,7 @@ and gaining enough context to write a good RFC takes more than a year.
 
 In practice, Pando RFCs serve two purposes:
 
-* **Pando Team RFCs** are submitted by [Pando Team members](https://design.pluralsight.com/team) after extensive (sometimes,
+* **Pando Team RFCs** are submitted by [Pando Team members](https://design.pluralsight.com/docs/learn/about-pando/team) after extensive (sometimes,
 multi-month or multi-year) design, discussion, and experimentation. In practice, they comprise the
 majority of the RFCs that got merged so far. The purpose of these RFCs is to preview the design
 for the community and to provide an opportunity for feedback. We read every comment on the RFCs
