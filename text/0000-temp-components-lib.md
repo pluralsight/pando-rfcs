@@ -103,6 +103,7 @@ A component library would be most beneficial to teams/users that:
 2. Junior frontend developers who have little to no experience in Javascript or React.
 3. Marketing departments who would like to use Pando, but have "just enough experience to be dangerous" in frontend development.
 4. Team leads that haven't been able to keep up with the technology trends but still need to code when possible.
+5. Teams that have the experience and understanding of Javascript and React, but don't have the time that may be required to use an API like Headless-styles (vs. dropping in an abstraction of it - component).
 
 ### What is the expected outcome?
 
