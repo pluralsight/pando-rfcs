@@ -154,7 +154,7 @@ import { type HTMLAttributes, type PropsWithChildren } from 'react'
 
 interface ButtonProps extends ButtonOptions, HTMLAttributes<HTMLButtonElement> {}
 
-export function Button(props: PropsWithChildren<ButtonProps>) {
+function PandoButton(props: PropsWithChildren<ButtonProps>, ref: RefObject) {
   const {
     className,
     disabled,
@@ -174,28 +174,24 @@ export function Button(props: PropsWithChildren<ButtonProps>) {
   })
 
   return (
-    <button {...pandoProps.button} {...nativeProps} />
+    <button {...pandoProps.button} {...nativeProps} ref={ref} />
   )
 }
+
+export const Button = forwardedRef(PandoButton)
 ```
 
 By nature, this example uses the native React JSX design while extending the
 Headless-styles props on top of it so it can be used in a way that compliments
 and teaches users about React & Javascript due to not manipluating any props/React APIs.
 
-We are purposefully not using `forwardedRef` to prevent complexity and possible
-performance implications. This idea might need to change, but we should wait until
-we have enough evidence the example below does not work in most use cases.
-
 This is an example of how the Button above can be used:
 
 ```typescript
-<span ref={btnRef}>
-  <Button type="button" onClick={handleClick}>
+  <Button type="button" onClick={handleClick} ref={btnRef}>
     <ShareIcon hidden />
     Share
   </Button>
-</span>
 ```
 
 ### Complex Components
@@ -218,26 +214,25 @@ into the new react library for colocation._
 An example of the Tabs family in practice, should look something like this:
 
 ```jsx
-<TabsProvider>
-  <Tabs>
-    <TabList>
-      <Tab>Tab 1</Tab>
-      <Tab>Tab 2</Tab>
-    </TabList>
-    <PanelList>
-      <Panel>
-        <PageOne />
-      <Panel>
-      <Panel>
-        <PageTwo />
-      <Panel>
-    </PanelList>
-  </Tabs>
-</TabsProvider>
+<Tabs>
+  <TabList>
+    <Tab>Tab 1</Tab>
+    <Tab>Tab 2</Tab>
+  </TabList>
+  <PanelList>
+    <Panel>
+      <PageOne />
+    <Panel>
+    <Panel>
+      <PageTwo />
+    <Panel>
+  </PanelList>
+</Tabs>
 ```
 
-In the above example, the `TabsProvider` manages the active state of the tabs.
-Notice how the usage mimics the HTML table family which is naturally composable.
+In the above example, the `Tabs` component would internally use a  `TabsProvider`
+which manages the active state of the tabs. Notice how the usage mimics the HTML
+table family which is naturally composable.
 
 ### Custom Hooks
 
@@ -508,9 +503,11 @@ nature of it being a vanilla Javascript library.
 ## Alternatives
 
 We've attempted to use more advanced/current/modern designs via Headless-styles,
-however, we have learned that ultimately, that design is still too advanced for
-the majority of Pando users. This is due to it relying on the user being comfortable
-and confident in front-end technologies [which isn't always the case we have found](#what-use-cases-does-it-support).
+however, we have learned that ultimately, that design (at its current state) still
+requires a high level of effort/work for the majority of Pando users. This is in
+part due to the user needing to build (and own) their own components which in
+some cases, have initiated feedback that a small segment felt uncomfortable with
+this scenario.
 
 Another alternative that was considered is using an already familiar 3rd party
 under the hood (i.e. Chakra, MUI, etc.). Ultimately, this doesn't meet our need
@@ -560,10 +557,14 @@ There would need to be the following features:
 If we can make this happen, the ROI on business **would be unlike anything
 Pluralsight as a company has ever seen** regarding migrating to a new brand/tooling.
 
-### Should we coordinate with other projects or libraries within Pando?
+### Should we coordinate with other libraries within Pando?
 
-Yes. All Pando libraries should share the same version number to make using and
-maintaining each package easier for the developer experience.
+Yes. All Pando libraries (i.e. and public package) should share the same version
+number to make using and maintaining each package easier for the developer experience.
+
+This should make it easier for a user to know if they are using compatible versions
+if they choose to use multiple libraries within a single project (i.e. using both
+`react` and `headless-styles`).
 
 ## How would we teach this?
 
