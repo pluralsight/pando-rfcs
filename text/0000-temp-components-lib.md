@@ -178,7 +178,7 @@ function PandoButton(props: PropsWithChildren<ButtonProps>, ref: RefObject) {
   )
 }
 
-export const Button = forwardedRef(PandoButton)
+export const Button = forwardRef(PandoButton)
 ```
 
 By nature, this example uses the native React JSX design while extending the
