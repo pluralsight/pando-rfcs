@@ -591,14 +591,14 @@ would create the following change to the "story" of each reference page:
 2. Anatomy
 3. Import (component & types)
 4. Usage
-  a. Basic (component)
-  b. Variants* (component)
+    a. Basic (component)
+    b. Variants* (component)
 5. Extending
-  a. Classes (about using unused classes shipped with Headless-styles)
-  b. Ejecting (using Headless-styles)
+    a. Classes (about using unused classes shipped with Headless-styles)
+    b. Ejecting (using Headless-styles)
 6. Reference (component)
-  a. Props
-  b. Caveats
+    a. Props
+    b. Caveats
 7. Behavior
 8. Accessibility
 
