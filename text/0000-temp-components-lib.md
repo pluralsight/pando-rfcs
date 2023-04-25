@@ -245,7 +245,15 @@ For example, a Toast would combine the use of a Provider that manages its state,
 and a hook that provides an easy to use API for the user.
 
 Assuming we start with the current [Toast recommended foundation](https://design.pluralsight.com/docs/next/reference/components/toast#basic-toast), we can simply create a Provider and hook
-combo that looks something like this:
+combo that looks something like the example below.
+
+<details>
+
+<summary>
+**Toast Provider and hook example**
+</summary>
+
+<p>
 
 ```typescript
 import {
@@ -386,8 +394,6 @@ export function useToast() {
     show: handleShow
   }), [context, handleShow])
 }
-```
-
 In this example, it should allow the developer to have an high-performant
 experience like so (due to the use of useReducer):
 
