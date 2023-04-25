@@ -474,27 +474,31 @@ that should naturally be made for more robust situations. Likewise, we have had
 a handfull of new people interested in helping contribute to a component library
 which would also speed things up and reduce cost.
 
-Can this library be implemented in our users space? Yes, since most of our teams
-choose to use React, it should only help. However, it should be noted that this
-creates favoritism to React which is typically a negative point since engineering
-should never use tooling from a bias but instead as a result of what is the
-"best tool for the job". It is literally impossible that React will always be the
-best tool for Pluralsight (and it may already be so, we are just choosing not to
-see it?). By nature, one day this specific library will be obsolete.
+### Can this library be implemented in our users space? 
 
-What would be the impact on teaching people about Pando React? Minimal. The biggest
-hurdle will probably be teaching people about more advanced/preferred React patterns
-based on performance and code scalability. This is only due to the larger amount
-of product code, 3rd party components, and libraries that exist in the world that
-do not use good React practices/anti-patterns (i.e. all in one components, etc.).
-However, I don't think this will really be that big of a deal?
+Yes, since most of our teams choose to use React, it should only help. However, 
+it should be noted that this creates favoritism to React which is typically a negative 
+point since engineering should never use tooling from a bias but instead as a 
+result of what is the "best tool for the job". It is literally impossible that React
+will always be the best tool for Pluralsight (and it may already be so, we are
+just choosing not to see it?). By nature, one day this specific library will be obsolete.
 
-What about integration of this library with other existing features? Everything
-in the [Pando Ecosystem](https://github.com/pluralsight/pando/tree/main/packages/headless-styles#what-role-does-this-package-play-in-pando) should naturally be able
+### What would be the impact on teaching people about Pando React?
+
+Minimal. The biggest hurdle will probably be teaching people about more
+advanced/preferred React patterns based on performance and code scalability. 
+This is only due to the larger amount of product code, 3rd party components, 
+and libraries that exist in the world that do not use good React practices/anti-patterns 
+(i.e. all in one components, etc.). However, I don't think this will really be that big of a deal?
+
+### What about integration of this library with other existing features?
+
+Everything in the [Pando Ecosystem](https://github.com/pluralsight/pando/tree/main/packages/headless-styles#what-role-does-this-package-play-in-pando) should naturally be able
 to co-exists without requiring any additional work from the developer experience.
 This also fulfills our [Commitment to Stability](https://design.pluralsight.com/docs/next/learn/about-pando/versioning#commitment-to-stability).
 
-What is the cost of migrating to Pando React from existing solutions (including Classic)?
+### What is the cost of migrating to Pando React from existing solutions (including Classic)?
+
 By nature, Pando will be a breaking change since it is fundamentally different down
 to the Web UI Kit (design options). However, it should allow the users to migrate
 easier since it would mostly be updating prop names and values on already existing components.
