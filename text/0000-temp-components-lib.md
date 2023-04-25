@@ -116,7 +116,7 @@ consistency).
 4. Share the functionality as Lego blocks (create your own outcome based on what you combine/remove).
 5. By nature, it should increase the community contribution for the same reasons
 mentioned above (a familiar design).
-
+6. Provide UI and implementation consistency across the platform, making it easier to collaborate across codebases.
 ## Detailed design
 
 The design of the components library should first and foremost center around the
