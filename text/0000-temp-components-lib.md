@@ -1,5 +1,5 @@
 - Start Date: 2023-04-13
-- RFC PR: (leave this empty)
+- RFC PR: https://github.com/pluralsight/pando-rfcs/pull/6
 - Pando Issue: (leave this empty)
 
 # Before Reading
@@ -131,6 +131,12 @@ Outside of these standards, there are 2 groups of components to consider:
 1. [Simple components](#simple-components) (Tag, Button, TextLink, etc.)
 2. [Complex compents](#complex-components) (Alert Dialogs, Notifications, Modal, etc.)
 
+For extending, there should be the ability to have three options:
+
+1. Utilized the unused CSS classes shipped with Headless-styles
+2. Add your own local styles via the `className` prop
+3. Use the "ejected" version via the Headless-styles API
+
 Last, there should also be helpers that naturally compliment the experience:
 
 1. [Custom hooks](#custom-hooks)
@@ -144,6 +150,9 @@ within React Server Components._
 Simple components should mimick the vanilla JSX design React provides with the Headless-styles
 props extending it (i.e. not manipulating React props or creating "component
 does all" solutions).
+
+Because of this, it should be possible to modify any component by using any props
+that the native React library allows (i.e. any `HTMLAttributes<XElement>`).
 
 For example, a Button should be built something like this:
 
@@ -507,9 +516,10 @@ they will only need a single package `@pluralsight/react` vs. a package for ever
 component used and it's required dependecies (i.e. Classic, MUI, Chakra, etc.).
 
 Ultimately, the pro's seem to outweigh the cons as long as users understand this
-library is not meant to be the end-game to Pando (Headless-styles is). Headless-styles
+library is not meant to be the core of Pando (Headless-styles is). Headless-styles
 will allow us to continue to scale throughout the trends of technology shifts by
-nature of it being a vanilla Javascript library.
+nature of it being a vanilla Javascript library while this library will provide
+a familair abstraction for the majority of our users.
 
 ## Alternatives
 
