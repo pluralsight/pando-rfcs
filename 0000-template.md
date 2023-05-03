@@ -1,6 +1,6 @@
 - Start Date: (fill me in with today's date, YYYY-MM-DD)
 - RFC PR: (leave this empty)
-- TVA Issue: (leave this empty)
+- Pando Issue: (leave this empty)
 
 # Summary
 
@@ -24,7 +24,7 @@ closely to the solution you have in mind.
 # Detailed design
 
 This is the bulk of the RFC. Explain the design in enough detail for somebody
-familiar with a TVA library to understand, and for somebody familiar with the
+familiar with a Pando library to understand, and for somebody familiar with the
 implementation to implement. This should get into specifics and corner-cases,
 and include examples of how the feature is used. Any new terminology should be
 defined here.
@@ -35,9 +35,9 @@ Why should we *not* do this? Please consider:
 
 - implementation cost, both in term of code size and complexity
 - whether the proposed feature can be implemented in user space
-- the impact on teaching people a TVA library
+- the impact on teaching people a Pando library
 - integration of this feature with other existing and planned features
-- cost of migrating existing TVA applications (is it a breaking change?)
+- cost of migrating existing Pando applications (is it a breaking change?)
 
 There are tradeoffs to choosing any path. Attempt to identify them here.
 
@@ -47,20 +47,20 @@ What other designs have been considered? What is the impact of not doing this?
 
 # Adoption strategy
 
-If we implement this proposal, how will existing TVA developers adopt it? Is
+If we implement this proposal, how will existing Pando developers adopt it? Is
 this a breaking change? Can we write a codemod? Should we coordinate with
 other projects or libraries?
 
 # How we teach this
 
 What names and terminology work best for these concepts and why? How is this
-idea best presented? As a continuation of existing TVA patterns?
+idea best presented? As a continuation of existing Pando patterns?
 
-Would the acceptance of this proposal mean the TVA documentation must be
-re-organized or altered? Does it change how TVA is taught to new developers
+Would the acceptance of this proposal mean the Pando documentation must be
+re-organized or altered? Does it change how Pando is taught to new developers
 at any level?
 
-How should this feature be taught to existing TVA developers?
+How should this feature be taught to existing Pando developers?
 
 # Unresolved questions
 
