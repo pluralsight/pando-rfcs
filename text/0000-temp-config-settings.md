@@ -1,4 +1,4 @@
-- Start Date: (fill me in with today's date, YYYY-MM-DD)
+- Start Date: 2023-07-12
 - RFC PR: (leave this empty)
 - Pando Issue: (leave this empty)
 
