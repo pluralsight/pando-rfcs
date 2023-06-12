@@ -1,6 +1,6 @@
 - Start Date: 2023-04-13
-- RFC PR: https://github.com/pluralsight/pando-rfcs/pull/6
-- Pando Issue: (leave this empty)
+- RFC PR: [Public PR](https://github.com/pluralsight/pando-rfcs/pull/6)
+- Pando Issue: [Discussion 1312](https://github.com/pluralsight/pando/discussions/1312)
 
 # Before Reading
 
@@ -483,11 +483,11 @@ that should naturally be made for more robust situations. Likewise, we have had
 a handfull of new people interested in helping contribute to a component library
 which would also speed things up and reduce cost.
 
-### Can this library be implemented in our users space? 
+### Can this library be implemented in our users space?
 
-Yes, since most of our teams choose to use React, it should only help. However, 
-it should be noted that this creates favoritism to React which is typically a negative 
-point since engineering should never use tooling from a bias but instead as a 
+Yes, since most of our teams choose to use React, it should only help. However,
+it should be noted that this creates favoritism to React which is typically a negative
+point since engineering should never use tooling from a bias but instead as a
 result of what is the "best tool for the job". It is literally impossible that React
 will always be the best tool for Pluralsight (and it may already be so, we are
 just choosing not to see it?). By nature, one day this specific library will be obsolete.
@@ -495,9 +495,9 @@ just choosing not to see it?). By nature, one day this specific library will be 
 ### What would be the impact on teaching people about Pando React?
 
 Minimal. The biggest hurdle will probably be teaching people about more
-advanced/preferred React patterns based on performance and code scalability. 
-This is only due to the larger amount of product code, 3rd party components, 
-and libraries that exist in the world that do not use good React practices/anti-patterns 
+advanced/preferred React patterns based on performance and code scalability.
+This is only due to the larger amount of product code, 3rd party components,
+and libraries that exist in the world that do not use good React practices/anti-patterns
 (i.e. all in one components, etc.). However, I don't think this will really be that big of a deal?
 
 ### What about integration of this library with other existing features?
