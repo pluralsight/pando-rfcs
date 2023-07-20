@@ -12,9 +12,20 @@ If you choose to contribute, please address the overall purpose of the RFC and n
 
 This RFC outlines the development of a headless ActionMenu equipped with extendable styling and enhanced accessibility. This improvement in the Pando platform's functionality could bring several noteworthy benefits:
 
+## Purpose
+
+1. **Improve Usability:** It provides a direct and straightforward way for users to navigate the application and perform tasks. It simplifies the user interface, improving the overall usability of the application.
+
+2. **Consolidate Actions:** It consolidates various options or actions into a single, organized element, making it easier for users to find the functionality they need without having to navigate through different parts of the application.
+
+3. **Streamline User Interactions:** An ActionMenu provides an organized structure where all related actions are grouped. This streamlining enhances the user's efficiency as they can quickly find the necessary action within a logically sorted list, resulting in a more intuitive user experience.
+
+## Benefits
 - **Modularity and Customizability:** The proposed headless ActionMenu promotes modular design and allows for extensive customization, fitting seamlessly into any design aesthetics.
 
 - **Accessibility Enhancement:** The commitment to improve accessibility ensures that all Pando users, regardless of their abilities, can effortlessly interact with the platform, thereby promoting inclusivity.
+
+- **Multi-Framework Support:** The headless ActionMenu's development will support various JavaScript frameworks, including React, Svelte, Angular, and Vue. This cross-framework compatibility ensures that developers working with any of these frameworks can seamlessly incorporate the ActionMenu into their projects.
 
 - **Streamlining Development:** This feature introduces a standardized way to create and manage ActionMenus, reducing the time and resources needed for individual development tasks.
 
