@@ -34,35 +34,32 @@ This RFC outlines the development of a headless ActionMenu equipped with extenda
 Here is a basic example using TailwindCSS for styles:
 
 ```jsx
-<ActionMenu className="relative">
-    <ActionMenu.Button className="text-black bg-white" aria-label="Open menu">
-      Open menu
-    </ActionMenu.Button>
-    <ActionMenu.Overlay>
-      <ActionList className="absolute bg-gray-700">
-        <ActionList.Item onSelect={() => alert("Copy link clicked")}>
-          Copy link
-          <ActionList.TrailingVisual>⌘C</ActionList.TrailingVisual>
-        </ActionList.Item>
-        <!-- more items... -->
-      </ActionList>
-    </ActionMenu.Overlay>
-</ActionMenu>
+<ActionMenuProvider>
+    <ActionMenuButton>Open Menu</ActionMenuButton>
+    <ActionMenuList as="ul">
+        <ActionMenuItem
+            className="cursor-pointer space-x-2 "
+            onSelect={() => handleClick('Item 1')}
+            leadingVisual="👋"
+            trailingVisual="⌘C"
+        >
+            Item 1
+        </ActionMenuItem>
+        <ActionMenuItem
+            className="cursor-pointer space-x-2"
+            onSelect={() => handleClick('Item 2')}
+            leadingVisual="🔗"
+            trailingVisual="⌘D"
+        >
+            Item 2
+        </ActionMenuItem>
+    </ActionMenuList>
+</ActionMenuProvider>
 ```
 ## Edge Cases
-Here are a few potential corner-cases for this ActionMenu component:
 
-1. **Empty ActionMenu**: What happens when an ActionMenu is rendered without any ActionList.Items? Your component should handle this case gracefully, possibly rendering an empty state message or not rendering the ActionMenu at all.
+- **Empty ActionMenu**: What happens when an ActionMenu is rendered without any ActionList.Items? Your component should handle this case gracefully, possibly rendering an empty state message or not rendering the ActionMenu at all.
 
-2. **A very long ActionList.Item**: What if one of your ActionList.Item's has a very long string or a complex node structure? The ActionMenu should handle this without breaking the layout or causing horizontal scrolling.
-
-3. **ActionList.Item's onSelect function fails**: The onSelect function of ActionList.Item can potentially throw an error or not return. Your component should be resilient to these situations and provide proper error handling to ensure that the rest of your application isn't affected.
-
-4. **High number of ActionList.Item's**: If the ActionMenu contains a very high number of items, it could potentially overflow off the page. The ActionMenu component should handle this condition, possibly by introducing scroll or limiting the number of items displayed at once and providing navigation to view additional items.
-
-5. **Interactions with other components**: How does the ActionMenu behave if other components on the page have overlapping z-indexes, or if there's a modal/dialog open? How does it behave when nested inside another container or component with special properties (like overflow hidden)?
-
-A ActionMenu component should be capable of handling a variety of content within its items, as well as a varying number of items.
 
 # Motivation
 
@@ -80,29 +77,19 @@ The newly proposed `ActionMenu` embodies a headless component. This means it pro
 
 Here is a rundown of the `ActionMenu` structure:
 
-- **`ActionMenu`**: This component acts as a wrapper for all other components, maintaining the state of the menu. Its design provides a flexible user interface that can be adapted to suit the unique requirements of any application, while preserving optimal accessibility.
+- **`ActionMenuProvider`**: This component acts as a wrapper for all other components, maintaining the state of the menu. Its design provides a flexible user interface that can be adapted to suit the unique requirements of any application, while preserving optimal accessibility.
 
-- **`ActionMenu.Button`**: This component is the button that triggers the menu. Developers can define the appearance of the button, allowing for a high degree of visual customization while maintaining ease of interaction.
+- **`ActionMenuButton`**: This component is the button that triggers the menu. Developers can define the appearance of the button, allowing for a high degree of visual customization while maintaining ease of interaction.
 
-- **`ActionMenu.Overlay`**: This component encapsulates the `ActionList` and is the actual menu displayed when the `ActionMenu.Button` is clicked. It is designed with user accessibility in mind, ensuring that the menu is easily navigable.
+- **`ActionMenuList`**: This component acts as a wrapper for the menu items, allowing developers to customize the arrangement of items to suit their specific needs.
 
-- **`ActionList`**: This component acts as a wrapper for the menu items, allowing developers to customize the arrangement of items to suit their specific needs.
-
-- **`ActionList.Item`**: This represents a single menu item. Each item is individually customizable, ensuring a balance between user interaction and accessibility.
+- **`ActionMenuItem`**: This represents a single menu item. Each item is individually customizable, ensuring a balance between user interaction and accessibility.
 
 The proposed design of the `ActionMenu` ensures that it is not only versatile and easy to use but also maintains an inclusive, accessible interface for all users while still being performant.
 
 # Drawbacks
 
 Creating an ActionMenu for a design system does come with its own set of potential drawbacks. Here are a few:
-
-**Complexity and Resource Requirements**: Designing a flexible and widely usable ActionMenu can be a complex task, demanding substantial time and resources. Considering the diverse requirements of different applications, it's challenging to develop a solution that satisfies all possible needs.
-
-**Increased Learning Curve**: An ActionMenu with advanced features and options may increase the learning curve for users. They may have to spend more time understanding how to implement and customize it effectively in their own applications.
-
-**Potential Overhead**: If the ActionMenu is not implemented efficiently, it could introduce performance overhead in the applications where it's used. Poor performance may affect the user experience negatively.
-
-**Integration Challenges**: There may be potential issues when integrating the ActionMenu with existing components or frameworks in the design system. These could range from styling conflicts to more substantial incompatibility issues.
 
 **Maintenance Overhead**: As the design system evolves and new features are added, the ActionMenu will need to be maintained and updated regularly to ensure it remains consistent with the rest of the system. This could add additional overhead in terms of time and resources.
 
