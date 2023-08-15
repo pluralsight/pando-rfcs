@@ -333,9 +333,17 @@ create a more consistent experience (both customer and developer) across the com
 ### Cost of migration
 
 This would introduce a breaking change **only** for teams that have yet to adopt
-Pando React. For teams that have already adopted Pando React, this would be a
+Pando React.
+
+For teams that have already adopted Pando React, this would be a
 non-breaking change since the tooling is internal and it's just adding some deps
-and a config file.
+and a new config file(s) (i.e. panda.config.ts and postcss if not already in use).
+
+For teams that have not adopted Pando React, this would require them to migrate
+their code to use Pando React and Panda CSS/PostCSS. This migration cost here is
+almost the same as the cost of migrating to Pando React. The only difference is
+we are creatin a new standardized approach to styling which will make it easier
+for teams to adopt and use while being more performant for the customer.
 
 If we approach this via the CLI promoted above, it should be even easier for teams
 to start using Pando without doing any work.
