@@ -55,16 +55,99 @@ feedback should be both visual and written (colors, emojis, animations, etc.).
 The `setup` command will be used to setup a project to use Pando. It should do the
 following:
 
-- Welcome the user to Pando CLI
-- Install required dependencies based on local PM of choice (npm, yarn, pnpm)
-- Add a `panda.config.ts` file to the project root that includes the `@pluralsight/pando-panda-preset` preset
-- Add a `postcss.config.cjs` file to the project (if it doesn't already exist) root that includes the `autoprefixer` and `pandacss` plugin
-- Update the `package.json` file to include the `panda:generate` and `prepare` scripts
+#### 1. Welcome the user to Pando CLI
+
+This should be a delightful welcome message that includes emoji visuals at the least.
+
+#### 2. Install required dependencies
+
+The CLI should install the following dependencies based on local PM of choice (bun, npm, yarn, pnpm):
+
+- `@pluralsight/{react,icons}`
+
+#### 3. Install required devDependencies
+
+The CLI should install the following dependencies based on local PM of choice (bun, npm, yarn, pnpm):
+
+- `@pluralsight/panda-preset`
+- `@pandacss/dev`
+- `postcss` (if not already installed)
+- `autoprefixer` (if not already installed)
+
+#### 4. Setup Panda & PostCSS
+
+The CLI should follow the steps outlined in the [Panda documentation](https://panda-css.com/docs/installation/postcss) for using PostCSS.
+
+Additionally, the CLI should add `autoprefixer` to the postcss config file.
+
+#### 5. Ask the user some Panda configuration questions
+
+The CLI should ask the user the following questions to help fill in any remaining Panda configuration gaps needed:
+
+- **What files would you like to include?** This should use a placeholder that matches step 3 in the PostCSS setup documentation.
+- **What files would you like to exclude?** This should use a placeholder that matches step 3 in the PostCSS setup documentation.
+- **What framework would you like to use?** This should use a placeholder of `react`. [Available Options](https://panda-css.com/docs/references/config#jsxframework)
+
+#### 6. Create `pando.entry.css` file
+
+The CLI should create a `pando.entry.css` file in the `src` directory of the project. This file should be the main CSS file for the project.
+
+For the file contents, the CLI should write Step 5 of the PostCSS setup documentation to the file along with some custom font setup:
+
+```css
+@font-face {
+  font-display: swap;
+  font-family: 'PS Commons';
+  font-style: normal;
+  font-weight: 500 800;
+  src: url('https://fonts.pluralsight.com/ps-tt-commons/v1/ps-tt-commons-variable-roman.woff2')
+    format('woff-variations');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.pluralsight.com/dm-mono/v1/dm-mono-regular.ttf')
+    format('truetype');
+}
+
+:root {
+  --font-pando: 'PS Commons', 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+  --font-pando-mono: 'DM Mono', 'Fira Code', 'Operator Mono', 'Source Code Pro', monospace;
+}
+```
+
+#### 7. Update the index.html `head` tag
+
+The CLI should update the `head` of the `index.html` file to include the following:
+
+_NOTE: This should be added **before** any other tag in the `head`._
+
+```html
+<link
+  rel="preload"
+  href="https://fonts.pluralsight.com/ps-tt-commons/v1/ps-tt-commons-variable-roman.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+```
+
+> Note: Some frameworks like Next.js will have font helpers to preload fonts. This should be used instead of the above. See the [Panda documentation](https://panda-css.com/docs/guides/fonts#setup) for more details.
+
+#### 7. Update the scripts in the `package.json` file
+
+Following the step 4 of the PostCSS setup documentation, the CLI should update the `package.json` file to include the `panda:generate`, `prepare`, and `build:css` scripts.
+
+- `panda:generate` should be set to `panda generate`
+- `build:css` should be set to `postcss src/pando.entry.css -o dist/index.css` or whatever the main CSS file is
 
 #### Typescript
 
 TS projects should also be able to extend their `tsconfig.json` file to include the `tsconfig.pando.json`
-file from the `@pluralsight/pando-panda-preset` package. This config would simply mirror the TS config
+file from the `@pluralsight/panda-preset` package. This config would simply mirror the TS config
 used in the Pando React project.
 
 # Drawbacks
