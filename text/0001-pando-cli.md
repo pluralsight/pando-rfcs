@@ -88,6 +88,8 @@ The CLI should ask the user the following questions to help fill in any remainin
 - **What files would you like to exclude?** This should use a placeholder that matches step 3 in the PostCSS setup documentation.
 - **What framework would you like to use?** This should use a placeholder of `react`. [Available Options](https://panda-css.com/docs/references/config#jsxframework)
 
+The config file should include the comments that using `panda init` generally provides.
+
 #### 6. Create `pando.entry.css` file
 
 The CLI should create a `pando.entry.css` file in the `src` directory of the project. This file should be the main CSS file for the project.
